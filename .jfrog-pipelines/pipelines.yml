@@ -16,14 +16,14 @@
       - name: prodRepoBundle
         type: ReleaseBundle
         configuration:
-          sourceDistribution: myDist
+          sourceDistribution: myDistribution
           name: releaseName
           version: 1.0.${run_id}
 
       - name: siteARuleName
         type: DistributionRule
         configuration:
-          sourceDistribution: myDist
+          sourceDistribution: myDistribution
           serviceName: "*"
           siteName: siteAName
           cityName: "*"
@@ -32,7 +32,7 @@
       - name: siteBRuleName
         type: DistributionRule
         configuration:
-          sourceDistribution: myDist
+          sourceDistribution: myDistribution
           serviceName: "*"
           siteName: siteBName
           cityName: "*"
