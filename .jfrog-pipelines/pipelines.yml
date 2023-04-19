@@ -1,47 +1,47 @@
     resources:
-      - name: *curationResName
+      - name: curationResName
         type: PropertyBag
         configuration:
           resourceList: []
 
-      - name: *devRepoBuildInfoName
+      - name: devRepoBuildInfoName
         type: BuildInfo
         configuration:
-          sourceArtifactory: *artIntName
-      - name: *prodRepoBuildInfoName
+          sourceArtifactory: myArtifactory
+      - name: prodRepoBuildInfoName
         type: BuildInfo
         configuration:
-          sourceArtifactory: *artIntName
+          sourceArtifactory: myArtifactory
 
-      - name: *prodRepoBundle
+      - name: prodRepoBundle
         type: ReleaseBundle
         configuration:
-          sourceDistribution: *distIntName
-          name: *releaseName
+          sourceDistribution: myDist
+          name: releaseName
           version: 1.0.${run_id}
 
-      - name: *siteARuleName
+      - name: siteARuleName
         type: DistributionRule
         configuration:
-          sourceDistribution: *distIntName
+          sourceDistribution: myDist
           serviceName: "*"
-          siteName: *siteAName
+          siteName: siteAName
           cityName: "*"
           countryCodes:
             - "*"
-      - name: *siteBRuleName
+      - name: siteBRuleName
         type: DistributionRule
         configuration:
-          sourceDistribution: *distIntName
+          sourceDistribution: myDist
           serviceName: "*"
-          siteName: *siteBName
+          siteName: siteBName
           cityName: "*"
           countryCodes:
             - "*"
 
 
     pipelines:
-      - name: *curationName
+      - name: curationName
         configuration:
           jfrogCliVersion: 2
           environmentVariables:
@@ -55,11 +55,11 @@
             type: Bash
             configuration:
               integrations:
-                - name: *artIntName
+                - name: artIntName
               outputResources:
-                - name: *curationResName
+                - name: curationResName
               environmentVariables:
-                artIntName: *artIntName
+                artIntName: myArtifactory
                 devRepoName: *devRepoName
                 curationResName: *curationResName
                 virtualRepoName: *virtualRepoName
@@ -84,12 +84,12 @@
               onSuccess:
                 - write_output ${curationResName} "resourceList=${newList}"
 
-      - name: *promotionName
+      - name: promotionName
         configuration:
           jfrogCliVersion: 2
           environmentVariables:
             readOnly:
-              JFROG_CLI_BUILD_NAME: *buildName
+              JFROG_CLI_BUILD_NAME: buildName
               JFROG_CLI_BUILD_NUMBER: ${run_id}
               fileList:
                 default: ""
@@ -101,17 +101,17 @@
             type: Bash
             configuration:
               environmentVariables:
-                devRepoName: *devRepoName
-                virtualRepoName: *virtualRepoName
-                artIntName: *artIntName
-                buildInfoName: *devRepoBuildInfoName
+                devRepoName: devRepoName
+                virtualRepoName: virtualRepoName
+                artIntName: myArtifactory
+                buildInfoName: devRepoBuildInfoName
               inputResources:
-                - name: *curationResName
+                - name: curationResName
                   trigger: false
               outputResources:
-                - name: *devRepoBuildInfoName
+                - name: devRepoBuildInfoName
               integrations:
-                - name: *artIntName
+                - name: myArtifactory
             execution:
               onExecute:
                 - promotionList="$fileList"
@@ -148,31 +148,31 @@
             configuration:
               requiresApproval: true
               copy: true
-              targetRepository: *prodRepoName
+              targetRepository: prodRepoName
               inputResources:
-                - name: *devRepoBuildInfoName
+                - name: devRepoBuildInfoName
               outputResources:
-                - name: *prodRepoBuildInfoName
+                - name: prodRepoBuildInfoName
 
           - name: create_bundle
             type: CreateReleaseBundle
             configuration:
               sign: true
-              releaseBundleName: *releaseName
+              releaseBundleName: releaseName
               releaseBundleVersion: ${run_id}
               dryRun: false
               inputResources:
-                - name: *prodRepoBuildInfoName
+                - name: prodRepoBuildInfoName
               outputResources:
-                - name: *prodRepoBundle
+                - name: prodRepoBundle
 
           - name: distribute_site_a
             type: DistributeReleaseBundle
             configuration:
               dryRun: false
               inputResources:
-                - name: *siteARuleName
-                - name: *prodRepoBundle
+                - name: siteARuleName
+                - name: prodRepoBundle
                   trigger: false
 
           - name: distribute_site_b
@@ -180,7 +180,6 @@
             configuration:
               dryRun: false
               inputResources:
-                - name: *siteBRuleName
-                - name: *prodRepoBundle
+                - name: siteBRuleName
+                - name: prodRepoBundle
                   trigger: false
-
