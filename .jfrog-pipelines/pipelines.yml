@@ -115,8 +115,8 @@
             execution:
               onExecute:
                 - promotionList="$fileList"
-                - if [ -z "$promotionList" ]; then promotionList="${resourceList}"; fi
-                - if [ -z "$promotionList" ]; then echo "no file list found in env or resource. file list is required for promotion flow"; exit 1; fi
+                # - if [ -z "$promotionList" ]; then promotionList="${resourceList}"; fi
+                # - if [ -z "$promotionList" ]; then echo "no file list found in env or resource. file list is required for promotion flow"; exit 1; fi
                 - |
                   AQL1="items.find ({\"\$or\":[{"
                   AQL2=""
