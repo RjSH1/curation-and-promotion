@@ -55,7 +55,7 @@
             type: Bash
             configuration:
               integrations:
-                - name: artIntName
+                - name: myArtifactory
               outputResources:
                 - name: curationResName
               environmentVariables:
@@ -66,9 +66,9 @@
             execution:
               onExecute:
                 - if [ -z "$fileList" ]; then echo "Must provide value for 'fileList' variable via custom trigger"; exit 1; fi
-                - art_url="$(eval echo \"\${int_${artIntName}_url}\")"
-                - art_apikey="$(eval echo \"\${int_${artIntName}_apikey}\")"
-                - art_user="$(eval echo \"\${int_${artIntName}_username}\")"
+                - art_url="$(eval echo \"\${int_${myArtifactory}_url}\")"
+                - art_apikey="$(eval echo \"\${int_${myArtifactory}_apikey}\")"
+                - art_user="$(eval echo \"\${int_${myArtifactory}_username}\")"
                 - newList=""
                 - |
                   for item in ${fileList//,/ }; do
