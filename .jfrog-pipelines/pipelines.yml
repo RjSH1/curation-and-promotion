@@ -60,9 +60,9 @@
                 - name: curationResName
               environmentVariables:
                 artIntName: myArtifactory
-                devRepoName: *devRepoName
-                curationResName: *curationResName
-                virtualRepoName: *virtualRepoName
+                devRepoName: devRepoName
+                curationResName: curationResName
+                virtualRepoName: virtualRepoName
             execution:
               onExecute:
                 - if [ -z "$fileList" ]; then echo "Must provide value for 'fileList' variable via custom trigger"; exit 1; fi
