@@ -8,6 +8,7 @@
         type: BuildInfo
         configuration:
           sourceArtifactory: myArtifactory
+          
       - name: prodRepoBuildInfoName
         type: BuildInfo
         configuration:
@@ -146,7 +147,7 @@
           - name: promote_build
             type: PromoteBuild
             configuration:
-              requiresApproval: true
+              requiresApproval: false
               copy: true
               targetRepository: prodRepoName
               inputResources:
