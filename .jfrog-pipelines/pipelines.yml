@@ -138,7 +138,7 @@
                   BUILD_FOOTER="}]}"
                   BUILDINFO="${BUILD_HEADER}$RES${BUILD_FOOTER}"
                   echo $BUILDINFO
-                  jf rt curl -H 'Content-Type:application/json' -d "$BUILDINFO"  -XPUT /api/build?project=$project_key
+                  jf rt curl -H 'Content-Type:application/json' -d "$BUILDINFO"  -X PUT /api/build?project=$project_key
 
               onSuccess:
                 - write_output ${buildInfoName} "buildName=${JFROG_CLI_BUILD_NAME}" "buildNumber=${JFROG_CLI_BUILD_NUMBER}"
