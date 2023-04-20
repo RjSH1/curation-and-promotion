@@ -132,7 +132,7 @@
                   AQL2='echo ${AQL2} | rev | cut -c2- | rev'
                   AQL3='}],"type":"file"}).include("actual_md5", "name")'
                   AQL="${AQL1}${AQL2}${AQL3}"
-                  RES='jf rt curl -XPOST -H "Content-Type: text/plain" -d "$AQL" api/search/aql --silent | jq '[.results[] | .["md5"] = .["actual_md5"] | del(.actual_md5)]' '
+                  RES=jf rt curl -XPOST -H "Content-Type: text/plain" -d "$AQL" api/search/aql --silent | jq '[.results[] | .["md5"] = .actual_md5 | del(.actual_md5)]'
                   BST='date +"%Y-%m-%dT%H:%M:%S.000%z"'
                   BUILD_HEADER="{ \"version\":\"1.0.1\", \"name\":\"${JFROG_CLI_BUILD_NAME}\", \"number\":\"${JFROG_CLI_BUILD_NUMBER}\", \"type\":\"GENERIC\", \"started\":\"${BST}\", \"modules\": [{ \"id\":\"rpms\",\"type\":\"generic\", \"artifacts\":"
                   BUILD_FOOTER="}]}"
