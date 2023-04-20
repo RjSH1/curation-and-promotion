@@ -149,7 +149,7 @@
             configuration:
               requiresApproval: false
               copy: true
-              targetRepository: prodRepoName
+              targetRepository: test-prodRepoName
               inputResources:
                 - name: devRepoBuildInfoName
               outputResources:
