@@ -8,12 +8,16 @@
         type: BuildInfo
         configuration:
           sourceArtifactory: myArtifactory
+          buildName: buildName
+          buildNumber: ${run_id}           
           
       - name: prodRepoBuildInfoName
         type: BuildInfo
         configuration:
           sourceArtifactory: myArtifactory
-
+          buildName: buildName
+          buildNumber: ${run_id} 
+          
       - name: prodRepoBundle
         type: ReleaseBundle
         configuration:
