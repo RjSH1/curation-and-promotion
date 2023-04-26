@@ -143,7 +143,7 @@
 
               onSuccess:
                 - write_output ${buildInfoName} "buildName=${JFROG_CLI_BUILD_NAME}" "buildNumber=${JFROG_CLI_BUILD_NUMBER}"
-                  echo "buildInfoName=${buildInfoName}" "buildName=${JFROG_CLI_BUILD_NAME}" "buildNumber=${JFROG_CLI_BUILD_NUMBER}"
+                  echo "${buildInfoName}" "${JFROG_CLI_BUILD_NAME}" "${JFROG_CLI_BUILD_NUMBER}"
 
           - name: promote_build
             type: PromoteBuild
