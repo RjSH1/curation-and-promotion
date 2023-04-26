@@ -7,16 +7,12 @@
       - name: devRepoBuildInfoName
         type: BuildInfo
         configuration:
-          sourceArtifactory: myArtifactory
-          buildName: buildName
-          buildNumber: ${run_id}           
+          sourceArtifactory: myArtifactory          
           
       - name: prodRepoBuildInfoName
         type: BuildInfo
         configuration:
           sourceArtifactory: myArtifactory
-          buildName: buildName
-          buildNumber: ${run_id} 
           
       - name: prodRepoBundle
         type: ReleaseBundle
