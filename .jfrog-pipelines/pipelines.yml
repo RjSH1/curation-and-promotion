@@ -90,8 +90,8 @@
           jfrogCliVersion: 2
           environmentVariables:
             readOnly:
-              JFROG_CLI_BUILD_NAME: buildName
-              JFROG_CLI_BUILD_NUMBER: ${run_id}
+              #JFROG_CLI_BUILD_NAME: buildName
+              #JFROG_CLI_BUILD_NUMBER: ${run_id}
               fileList:
                 default: ""
                 allowCustom: true
@@ -150,8 +150,8 @@
             configuration:
               requiresApproval: false
               # copy: true
-              integrations:
-                - name: myArtifactory  
+              #integrations:
+                #- name: myArtifactory  
               targetRepository: test-prodRepoName
               inputResources:
                 - name: devRepoBuildInfoName
