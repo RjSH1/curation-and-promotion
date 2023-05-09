@@ -150,7 +150,8 @@
             configuration:
               requiresApproval: false
               # copy: true
-              integrations: myArtifactory
+              integrations:
+                - name: myArtifactory  
               targetRepository: test-prodRepoName
               inputResources:
                 - name: devRepoBuildInfoName
